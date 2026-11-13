@@ -1,5 +1,5 @@
 /* styles.css */
-/* Sistema de diseño para la Novena de Navidad Ecuménica */
+/* Sistema de diseño para la Novena de Navidad (español / portugués) */
 
 :root {
   /* Fuentes */
@@ -9,7 +9,7 @@
 
   /* Escala de texto base */
   --text-base-size: 16px;
-  --font-scale: 1.0;
+  --font-scale: 1.2; /* normal; app.js lo ajusta con los botones A- / A / A+ */
 
   /* Transiciones */
   --transition-speed: 0.3s;
@@ -622,6 +622,16 @@ body {
   margin: 1rem 0;
   font-style: italic;
   position: relative;
+  white-space: pre-line; /* Mantiene los párrafos de la lectura */
+}
+
+/* Aviso de paráfrasis bajo la lectura */
+.reading-note {
+  font-size: calc(0.85rem * var(--font-scale));
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  margin: 0 0 1rem;
+  padding-left: 1.2rem;
 }
 
 .theme-light .bible-reading {
@@ -1135,3 +1145,12 @@ button:focus-visible,
 }
 
 
+
+/* En pantallas angostas, el texto justificado deja huecos grandes entre palabras:
+   se alinea a la izquierda para facilitar la lectura. */
+@media (max-width: 599px) {
+  .prayer-text, .reflection-text, .bible-reading, .peticion-box {
+    text-align: left;
+    hyphens: auto;
+  }
+}
