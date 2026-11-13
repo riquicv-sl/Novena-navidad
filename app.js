@@ -1,16 +1,33 @@
 // app.js
-// Lógica de control e interactividad para la Novena de Navidad Ecuménica
+// Lógica de control e interactividad para la Novena de Navidad (español / portugués)
 
 document.addEventListener('DOMContentLoaded', () => {
+  // --- DATOS POR IDIOMA ---
+  // Los textos de la novena vienen de novena-data.js (es) y novena-data-pt.js (pt).
+  // Las imágenes se toman siempre de novena-data.js, para no duplicar rutas.
+  const DATA = { es: NOVENA_DATA, pt: NOVENA_DATA_PT };
+  const FONT_SCALES = [0.9, 1.2, 1.4];
+  const DEFAULT_FONT_SCALE = 1.2;
+
+  function detectLanguage() {
+    const nav = (navigator.language || 'es').toLowerCase();
+    return nav.startsWith('pt') ? 'pt' : 'es';
+  }
+
   // --- VARIABLES DE ESTADO ---
   let state = {
-    currentDay: 1,          // 1 a 9
-    currentStep: 0,         // 0 a 5 (Pasos dentro del día)
-    completedDays: [],      // Array de días completados, ej. [1, 2]
-    theme: 'dark',          // 'dark' o 'light'
-    fontScale: 1.0,         // 1.0, 1.25, 1.5
-    imageStyle: 'vitral'    // 'vitral' o 'icono'
+    currentDay: 1,                 // 1 a 9
+    currentStep: 0,                // 0 a 5 (pasos dentro del día)
+    completedDays: [],             // días completados, ej. [1, 2]
+    theme: 'dark',                 // 'dark' o 'light'
+    fontScale: DEFAULT_FONT_SCALE, // 0.9, 1.2 (normal) o 1.4
+    imageStyle: 'vitral',          // 'vitral' o 'icono'
+    language: detectLanguage()     // 'es' o 'pt'
   };
+
+  // Atajos para el idioma activo
+  const t = (key) => UI_STRINGS[state.language][key];
+  const data = () => DATA[state.language];
 
   // --- ELEMENTOS DEL DOM ---
   const body = document.body;
@@ -22,14 +39,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const cardContentArea = document.getElementById('card-content-area');
   const progressStepsIndicator = document.getElementById('progress-steps-indicator');
   const stepDots = progressStepsIndicator.querySelectorAll('.step-dot');
-  
+
   // Botones de pasos (dentro de la tarjeta)
   const btnPrevStep = document.getElementById('btn-prev-step');
   const btnNextStep = document.getElementById('btn-next-step');
+  const nextStepLabel = document.getElementById('next-step-label');
+  const nextStepIcon = document.getElementById('next-step-icon');
   const btnMarkComplete = document.getElementById('btn-mark-complete');
   const markCompleteLabel = document.getElementById('mark-complete-label');
-  
+
   // Controles globales
+  const btnLangEs = document.getElementById('btn-lang-es');
+  const btnLangPt = document.getElementById('btn-lang-pt');
   const btnFontDec = document.getElementById('btn-font-dec');
   const btnFontNorm = document.getElementById('btn-font-norm');
   const btnFontInc = document.getElementById('btn-font-inc');
@@ -37,18 +58,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnStyleVitral = document.getElementById('btn-style-vitral');
   const btnStyleIcono = document.getElementById('btn-style-icono');
   const btnResetProgress = document.getElementById('btn-reset-progress');
-  
+
   // Barra de progreso global
   const globalProgressFill = document.getElementById('global-progress-fill');
   const globalProgressPercentage = document.getElementById('global-progress-percentage');
 
   // Textos y contenedores específicos
+  const titleOracionInicial = document.getElementById('title-oracion-inicial');
+  const titleOracionFinal = document.getElementById('title-oracion-final');
+  const titleGozos = document.getElementById('title-gozos');
   const textOracionInicial = document.getElementById('text-oracion-inicial');
   const textOracionFinal = document.getElementById('text-oracion-final');
   const textGozosEstribillo = document.getElementById('text-gozos-estribillo');
   const gozosVersesList = document.getElementById('gozos-verses-list');
-  
+
   const textLecturaBiblica = document.getElementById('text-lectura-biblica');
+  const textLecturaNota = document.getElementById('text-lectura-nota');
   const labelLecturaRef = document.getElementById('label-lectura-ref');
   const textReflexion = document.getElementById('text-reflexion');
   const textPeticion = document.getElementById('text-peticion');
@@ -64,6 +89,10 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (e) {
       console.warn('LocalStorage no disponible o bloqueado. Se usará estado temporal en memoria.', e);
     }
+    // Corregir valores guardados por versiones anteriores
+    if (!FONT_SCALES.includes(state.fontScale)) state.fontScale = DEFAULT_FONT_SCALE;
+    if (!DATA[state.language]) state.language = 'es';
+
     applyTheme();
     applyFontScale();
     applyImageStyleButtonActive();
@@ -76,270 +105,277 @@ document.addEventListener('DOMContentLoaded', () => {
         completedDays: state.completedDays,
         theme: state.theme,
         fontScale: state.fontScale,
-        imageStyle: state.imageStyle
+        imageStyle: state.imageStyle,
+        language: state.language
       }));
     } catch (e) {
       console.warn('No se pudo guardar el estado en LocalStorage:', e);
     }
   }
 
+  // --- IDIOMA ---
+  function applyLanguage() {
+    document.documentElement.lang = t('htmlLang');
+    document.title = t('pageTitle');
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      el.textContent = t(el.dataset.i18n);
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+      el.setAttribute('aria-label', t(el.dataset.i18nAria));
+    });
+
+    // Títulos de los puntos de progreso (1 a 6)
+    const stepTitles = t('stepTitles');
+    stepDots.forEach((dot, i) => {
+      dot.title = stepTitles[i];
+      dot.setAttribute('aria-label', `${i + 1}. ${stepTitles[i]}`);
+    });
+
+    btnLangEs.classList.toggle('active', state.language === 'es');
+    btnLangPt.classList.toggle('active', state.language === 'pt');
+    btnLangEs.setAttribute('aria-pressed', state.language === 'es');
+    btnLangPt.setAttribute('aria-pressed', state.language === 'pt');
+  }
+
+  function setLanguage(lang) {
+    if (!DATA[lang] || lang === state.language) return;
+    state.language = lang;
+    saveState();
+    renderAll({ scroll: false });
+  }
 
   // --- CONTROLES DE ACCESIBILIDAD Y ASPECTO ---
   function applyTheme() {
-    if (state.theme === 'light') {
-      body.classList.remove('theme-dark');
-      body.classList.add('theme-light');
-    } else {
-      body.classList.remove('theme-light');
-      body.classList.add('theme-dark');
-    }
+    body.classList.toggle('theme-light', state.theme === 'light');
+    body.classList.toggle('theme-dark', state.theme !== 'light');
   }
 
   function applyFontScale() {
     document.documentElement.style.setProperty('--font-scale', state.fontScale);
-    
-    // Actualizar botones de fuente activos
-    btnFontDec.classList.remove('active');
-    btnFontNorm.classList.remove('active');
-    btnFontInc.classList.remove('active');
-    
-    if (state.fontScale === 0.9) btnFontDec.classList.add('active');
-    else if (state.fontScale === 1.2) btnFontNorm.classList.add('active');
-    else if (state.fontScale === 1.4) btnFontInc.classList.add('active');
+    btnFontDec.classList.toggle('active', state.fontScale === 0.9);
+    btnFontNorm.classList.toggle('active', state.fontScale === 1.2);
+    btnFontInc.classList.toggle('active', state.fontScale === 1.4);
   }
 
   function applyImageStyleButtonActive() {
-    btnStyleVitral.classList.remove('active');
-    btnStyleIcono.classList.remove('active');
-    
-    if (state.imageStyle === 'vitral') {
-      btnStyleVitral.classList.add('active');
-    } else {
-      btnStyleIcono.classList.add('active');
-    }
+    btnStyleVitral.classList.toggle('active', state.imageStyle === 'vitral');
+    btnStyleIcono.classList.toggle('active', state.imageStyle !== 'vitral');
   }
 
   // --- RENDERS DINÁMICOS ---
-  
-  // Renderizar la barra superior de días
+
+  // Barra superior de días
   function renderDaySelector() {
     daySelectorList.innerHTML = '';
-    
+
     for (let i = 1; i <= 9; i++) {
       const li = document.createElement('li');
       const btn = document.createElement('button');
       btn.className = 'day-item-btn';
-      if (i === state.currentDay) btn.classList.add('active');
+      if (i === state.currentDay) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-current', 'step');
+      }
       btn.textContent = i;
-      btn.setAttribute('aria-label', `Día ${i}`);
-      
-      // Si el día está completado, añadir distintivo
+      btn.setAttribute('aria-label', t('dayAria')(i));
+
       if (state.completedDays.includes(i)) {
         const completedBadge = document.createElement('span');
         completedBadge.className = 'completed-badge';
         completedBadge.innerHTML = '<i class="fa-solid fa-check"></i>';
         btn.appendChild(completedBadge);
       }
-      
-      btn.addEventListener('click', () => {
-        selectDay(i);
-      });
-      
+
+      btn.addEventListener('click', () => selectDay(i));
+
       li.appendChild(btn);
       daySelectorList.appendChild(li);
     }
   }
 
-  // Cargar textos estáticos base (que no cambian entre días)
+  // Textos que no cambian entre días (oraciones y gozos)
   function renderStaticTexts() {
-    textOracionInicial.textContent = NOVENA_DATA.oracionInicial.texto;
-    textOracionFinal.textContent = NOVENA_DATA.oracionFinal.texto;
-    textGozosEstribillo.textContent = NOVENA_DATA.gozos.estribillo;
+    const d = data();
+    titleOracionInicial.textContent = d.oracionInicial.titulo;
+    titleOracionFinal.textContent = d.oracionFinal.titulo;
+    titleGozos.textContent = d.gozos.titulo;
+    textOracionInicial.textContent = d.oracionInicial.texto;
+    textOracionFinal.textContent = d.oracionFinal.texto;
+    textGozosEstribillo.textContent = d.gozos.estribillo;
 
-    // Cargar los gozos
     gozosVersesList.innerHTML = '';
-    NOVENA_DATA.gozos.estrofas.forEach((estrofa) => {
+    d.gozos.estrofas.forEach((estrofa) => {
       const verseBtn = document.createElement('button');
       verseBtn.className = 'gozo-verse-btn';
-      verseBtn.setAttribute('aria-label', `Recitar estrofa: ${estrofa.texto.replace(/\n/g, ' ')}`);
-      
+      verseBtn.setAttribute('aria-label', t('ariaGozo')(estrofa.texto.replace(/\n/g, ' ')));
+
       const pText = document.createElement('p');
       pText.className = 'gozo-verse-text';
       pText.textContent = estrofa.texto;
-      
+
       const spanRef = document.createElement('span');
       spanRef.className = 'gozo-verse-ref';
       spanRef.textContent = estrofa.referencia;
-      
+
       verseBtn.appendChild(pText);
       verseBtn.appendChild(spanRef);
-      
-      // Interactividad al pulsar el gozo: resalta el estribillo
-      verseBtn.addEventListener('click', () => {
-        highlightChorusCard();
-      });
-      
+      verseBtn.addEventListener('click', highlightChorusCard);
+
       gozosVersesList.appendChild(verseBtn);
     });
   }
 
-  // Resalta el estribillo para guiar la lectura
+  // Resalta el estribillo para guiar la respuesta
   function highlightChorusCard() {
     const chorusCard = document.getElementById('gozos-chorus-card');
     chorusCard.classList.add('highlight-glow');
-    
-    // Voz sintética para ayudar en la lectura si se desea, o simple animación
-    setTimeout(() => {
-      chorusCard.classList.remove('highlight-glow');
-    }, 1500);
+    setTimeout(() => chorusCard.classList.remove('highlight-glow'), 1500);
   }
 
-  // Cargar la información correspondiente al día activo
+  // Información del día activo
   function renderActiveDay() {
-    const dayInfo = NOVENA_DATA.dias.find(d => d.dia === state.currentDay);
-    if (!dayInfo) return;
+    const dayInfo = data().dias.find(d => d.dia === state.currentDay);
+    const dayImages = NOVENA_DATA.dias.find(d => d.dia === state.currentDay);
+    if (!dayInfo || !dayImages) return;
 
-    // Título y distintivos
-    heroDayBadge.textContent = `Día ${dayInfo.dia} de 9`;
+    heroDayBadge.textContent = t('dayBadge')(dayInfo.dia);
     heroDayTitle.textContent = dayInfo.titulo;
 
-    // Textos bíblicos y de meditación
-    labelLecturaRef.innerHTML = `<i class="fa-solid fa-book-bible"></i> Lectura Bíblica: ${dayInfo.lectura.referencia}`;
+    // Lectura, aviso de paráfrasis, reflexión y petición
+    labelLecturaRef.innerHTML = '';
+    const refIcon = document.createElement('i');
+    refIcon.className = 'fa-solid fa-book-bible';
+    labelLecturaRef.append(refIcon, ' ', t('lecturaLabel')(dayInfo.lectura.referencia));
+
     textLecturaBiblica.textContent = dayInfo.lectura.texto;
+
+    const nota = [];
+    if (dayInfo.lectura.esParafrasis) nota.push(dayInfo.lectura.fuente);
+    if (dayInfo.lectura.notaReferencia) nota.push(dayInfo.lectura.notaReferencia);
+    textLecturaNota.textContent = nota.join('. ');
+    textLecturaNota.hidden = nota.length === 0;
+
     textReflexion.textContent = dayInfo.reflexion;
     textPeticion.textContent = dayInfo.peticion;
 
-    // Manejo de la ilustración del día (con transiciones de carga)
-    heroIllustration.classList.add('hidden');
-    imageLoader.classList.remove('hidden');
+    // Ilustración del día (solo se recarga si cambia la imagen)
+    const imageSrc = state.imageStyle === 'vitral' ? dayImages.imagenVitral : dayImages.imagenOrtodoxo;
+    heroIllustration.alt = t('imageAlt')(dayInfo.titulo);
 
-    // Registrar manejadores de eventos ANTES de establecer el atributo src para evitar condiciones de carrera (cache)
-    heroIllustration.onerror = () => {
-      heroIllustration.onerror = null; // Evitar llamadas infinitas
-      imageLoader.classList.add('hidden');
-      heroIllustration.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='180' viewBox='0 0 280 180'><rect width='100%' height='100%' fill='%23121526'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23d4af37' font-family='Cinzel' font-size='16'>Ilustración Sacra</text></svg>";
-      heroIllustration.classList.remove('hidden');
-    };
+    if (heroIllustration.getAttribute('src') !== imageSrc) {
+      heroIllustration.classList.add('hidden');
+      imageLoader.classList.remove('hidden');
 
-    heroIllustration.onload = () => {
-      imageLoader.classList.add('hidden');
-      heroIllustration.classList.remove('hidden');
-    };
+      // Manejadores ANTES de cambiar src para evitar condiciones de carrera (caché)
+      heroIllustration.onerror = () => {
+        heroIllustration.onerror = null;
+        imageLoader.classList.add('hidden');
+        const label = encodeURIComponent(t('imagePlaceholder'));
+        heroIllustration.src = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='180' viewBox='0 0 280 180'><rect width='100%' height='100%' fill='%23121526'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23d4af37' font-family='Cinzel' font-size='16'>${label}</text></svg>`;
+        heroIllustration.classList.remove('hidden');
+      };
+      heroIllustration.onload = () => {
+        imageLoader.classList.add('hidden');
+        heroIllustration.classList.remove('hidden');
+      };
+      heroIllustration.src = imageSrc;
+    }
 
-    const imageSrc = state.imageStyle === 'vitral' ? dayInfo.imagenVitral : dayInfo.imagenOrtodoxo;
-    
-    // Cambiar la imagen y esperar que cargue
-    heroIllustration.src = imageSrc;
-
-    // Actualizar el estado del botón de completado
     updateMarkCompleteBtn();
   }
 
-  // Actualiza el aspecto del botón "Completar Día"
+  // Aspecto del botón "Marcar completado"
   function updateMarkCompleteBtn() {
     const isCompleted = state.completedDays.includes(state.currentDay);
-    if (isCompleted) {
-      btnMarkComplete.classList.add('completed-state');
-      markCompleteLabel.textContent = "Día Completado";
-      btnMarkComplete.querySelector('i').className = "fa-solid fa-circle-check";
-    } else {
-      btnMarkComplete.classList.remove('completed-state');
-      markCompleteLabel.textContent = "Marcar Completado";
-      btnMarkComplete.querySelector('i').className = "fa-solid fa-circle";
-    }
+    btnMarkComplete.classList.toggle('completed-state', isCompleted);
+    markCompleteLabel.textContent = isCompleted ? t('dayCompleted') : t('markComplete');
+    btnMarkComplete.querySelector('i').className = isCompleted ? 'fa-solid fa-circle-check' : 'fa-solid fa-circle';
+    btnMarkComplete.setAttribute('aria-pressed', isCompleted);
   }
 
-  // Renderizar los pasos dentro de la novena (oración inicial -> lectura -> reflexión...)
-  function renderActiveStep() {
-    // 1. Ocultar todos los paneles
+  // Pasos dentro del día (oración inicial -> lectura -> reflexión...)
+  function renderActiveStep({ scroll = true } = {}) {
     const panes = cardContentArea.querySelectorAll('.step-pane');
     panes.forEach(pane => pane.classList.remove('active'));
 
-    // 2. Mostrar panel actual
     const activePane = document.getElementById(`pane-step-${state.currentStep}`);
     if (activePane) activePane.classList.add('active');
 
-    // 3. Actualizar los puntos del indicador superior
     stepDots.forEach((dot, index) => {
-      dot.classList.remove('active', 'completed');
-      if (index === state.currentStep) {
-        dot.classList.add('active');
-      } else if (index < state.currentStep) {
-        dot.classList.add('completed');
-      }
+      dot.classList.toggle('active', index === state.currentStep);
+      dot.classList.toggle('completed', index < state.currentStep);
+      if (index === state.currentStep) dot.setAttribute('aria-current', 'step');
+      else dot.removeAttribute('aria-current');
     });
 
-    // 4. Configurar visibilidad de botones de navegación de pasos
-    if (state.currentStep === 0) {
-      btnPrevStep.style.visibility = 'hidden';
-    } else {
-      btnPrevStep.style.visibility = 'visible';
-    }
+    btnPrevStep.style.visibility = state.currentStep === 0 ? 'hidden' : 'visible';
 
-    if (state.currentStep === 5) {
-      btnNextStep.innerHTML = 'Finalizar Día <i class="fa-solid fa-circle-check"></i>';
-      btnNextStep.classList.add('primary-btn');
-    } else {
-      btnNextStep.innerHTML = 'Siguiente <i class="fa-solid fa-arrow-right"></i>';
-      btnNextStep.classList.remove('primary-btn');
-    }
+    const isLastStep = state.currentStep === 5;
+    nextStepLabel.textContent = isLastStep ? t('btnFinish') : t('btnNext');
+    nextStepIcon.className = isLastStep ? 'fa-solid fa-circle-check' : 'fa-solid fa-arrow-right';
 
-    // Scroll suave hasta el encabezado de la sección del panel para ayudar a personas mayores
-    activePane.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    // Desplazamiento suave hasta el panel (no al cargar la página)
+    if (scroll && activePane) {
+      activePane.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
   }
 
-  // Actualizar el progreso general
+  // Progreso general
   function renderGlobalProgress() {
     const totalDays = 9;
     const completedCount = state.completedDays.length;
     const percentage = Math.round((completedCount / totalDays) * 100);
 
     globalProgressFill.style.width = `${percentage}%`;
-    globalProgressPercentage.textContent = `${percentage}% (${completedCount} de ${totalDays} días completados)`;
+    globalProgressPercentage.textContent = t('progressText')(percentage, completedCount);
+  }
+
+  function renderAll({ scroll = true } = {}) {
+    applyLanguage();
+    renderStaticTexts();
+    renderDaySelector();
+    renderActiveDay();
+    renderActiveStep({ scroll });
+    renderGlobalProgress();
   }
 
   // --- NAVEGACIÓN Y EVENTOS ---
 
-  // Seleccionar un día específico de la novena
   function selectDay(dayNumber) {
     if (dayNumber < 1 || dayNumber > 9) return;
     state.currentDay = dayNumber;
-    state.currentStep = 0; // Regresa al paso 1 (Oración inicial)
-    
+    state.currentStep = 0;
+
     saveState();
     renderDaySelector();
     renderActiveDay();
     renderActiveStep();
   }
 
-  // Cambiar el paso activo de la lectura
   function navigateStep(direction) {
     const nextStep = state.currentStep + direction;
-    
+
     if (nextStep >= 0 && nextStep <= 5) {
       state.currentStep = nextStep;
       renderActiveStep();
     } else if (nextStep > 5) {
-      // Si pulsa siguiente en el paso final, marcamos el día como completado y pasamos al siguiente día
+      // En el último paso: marcar el día como completado y pasar al siguiente
       markDayAsCompleted(state.currentDay);
       if (state.currentDay < 9) {
-        alert(`¡Felicidades! Has terminado las lecturas del Día ${state.currentDay}. Avanzamos al Día ${state.currentDay + 1}.`);
+        alert(t('alertNextDay')(state.currentDay));
         selectDay(state.currentDay + 1);
       } else {
-        alert('¡Has completado el último día de la Novena de Navidad! Que el Niño Jesús llene de paz y bendiciones tu vida y tu hogar.');
+        alert(t('alertEnd'));
       }
     }
   }
 
-  // Marcar/desmarcar un día como completado
   function toggleCurrentDayCompletion() {
     const index = state.completedDays.indexOf(state.currentDay);
-    if (index > -1) {
-      state.completedDays.splice(index, 1);
-    } else {
-      state.completedDays.push(state.currentDay);
-    }
-    
+    if (index > -1) state.completedDays.splice(index, 1);
+    else state.completedDays.push(state.currentDay);
+
     saveState();
     renderDaySelector();
     renderGlobalProgress();
@@ -358,47 +394,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- ASIGNACIÓN DE EVENTOS A BOTONES ---
 
-  // Navegación de pasos
   btnPrevStep.addEventListener('click', () => navigateStep(-1));
   btnNextStep.addEventListener('click', () => navigateStep(1));
   btnMarkComplete.addEventListener('click', toggleCurrentDayCompletion);
 
-  // Selector de pasos superior (clic directo en los números)
   stepDots.forEach(dot => {
     dot.addEventListener('click', () => {
-      const step = parseInt(dot.getAttribute('data-step'), 10);
-      state.currentStep = step;
+      state.currentStep = parseInt(dot.dataset.step, 10);
       renderActiveStep();
     });
   });
 
-  // Tamaño de fuente
-  btnFontDec.addEventListener('click', () => {
-    state.fontScale = 0.9;
-    saveState();
-    applyFontScale();
-  });
-  
-  btnFontNorm.addEventListener('click', () => {
-    state.fontScale = 1.2; // 1.2 es el valor normal de lectura cómoda
-    saveState();
-    applyFontScale();
-  });
-  
-  btnFontInc.addEventListener('click', () => {
-    state.fontScale = 1.4; // Aumento adaptativo
-    saveState();
-    applyFontScale();
-  });
+  // Idioma
+  btnLangEs.addEventListener('click', () => setLanguage('es'));
+  btnLangPt.addEventListener('click', () => setLanguage('pt'));
 
-  // Alternador de tema
+  // Tamaño de letra
+  const setFontScale = (scale) => { state.fontScale = scale; saveState(); applyFontScale(); };
+  btnFontDec.addEventListener('click', () => setFontScale(0.9));
+  btnFontNorm.addEventListener('click', () => setFontScale(1.2));
+  btnFontInc.addEventListener('click', () => setFontScale(1.4));
+
+  // Tema
   btnThemeToggle.addEventListener('click', () => {
     state.theme = state.theme === 'dark' ? 'light' : 'dark';
     saveState();
     applyTheme();
   });
 
-  // Alternador de estilo de ilustraciones
+  // Estilo de ilustraciones
   btnStyleVitral.addEventListener('click', () => {
     state.imageStyle = 'vitral';
     saveState();
@@ -415,23 +439,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Reiniciar progreso
   btnResetProgress.addEventListener('click', () => {
-    if (confirm('¿Estás seguro de que deseas restablecer todo tu progreso de la novena? Esto desmarcará los días que has completado.')) {
+    if (confirm(t('confirmReset'))) {
       state.completedDays = [];
       state.currentDay = 1;
       state.currentStep = 0;
       saveState();
-      renderDaySelector();
-      renderActiveDay();
-      renderActiveStep();
-      renderGlobalProgress();
+      renderAll();
     }
   });
 
   // --- INICIALIZACIÓN ---
   loadState();
-  renderStaticTexts();
-  renderDaySelector();
-  renderActiveDay();
-  renderActiveStep();
-  renderGlobalProgress();
+  renderAll({ scroll: false });
 });

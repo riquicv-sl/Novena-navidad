@@ -1,5 +1,5 @@
 // novena-data.js
-// Datos y textos de la Novena de Navidad
+// Textos de la Novena de Navidad en ESPAÑOL (las rutas de imagen se usan para ambos idiomas)
 //
 // CITAS BÍBLICAS: numeración católica, formato "Libro capítulo,versículos"
 // (la misma de la Biblia Latinoamericana y la Biblia de Jerusalén).
@@ -68,8 +68,8 @@ Tú que vives y reinas por los siglos de los siglos. Amén.`,
     {
       dia: 1,
       titulo: "La promesa del Salvador",
-      imagenVitral: "images/vitral/dia1.png",
-      imagenOrtodoxo: "images/ortodoxo/dia1.png",
+      imagenVitral: "images/vitral/dia1.jpg",
+      imagenOrtodoxo: "images/ortodoxo/dia1.jpg",
       lectura: {
         referencia: "Isaías 9,1-6",
         notaReferencia: "En algunas Biblias aparece como Isaías 9,2-7.",
@@ -87,8 +87,8 @@ Dios pudo salvarnos de muchas maneras, pero eligió entrar en nuestra historia. 
     {
       dia: 2,
       titulo: "La Anunciación: el sí de María",
-      imagenVitral: "images/vitral/dia2.png",
-      imagenOrtodoxo: "images/ortodoxo/dia2.png",
+      imagenVitral: "images/vitral/dia2.jpg",
+      imagenOrtodoxo: "images/ortodoxo/dia2.jpg",
       lectura: {
         referencia: "Lucas 1,26-38",
         fuente: FUENTE_BIBLICA,
@@ -113,8 +113,8 @@ María es la primera discípula y el modelo perfecto de la fe. En ella vemos que
     {
       dia: 3,
       titulo: "La Visitación",
-      imagenVitral: "images/vitral/dia3.png",
-      imagenOrtodoxo: "images/ortodoxo/dia3.png",
+      imagenVitral: "images/vitral/dia3.jpg",
+      imagenOrtodoxo: "images/ortodoxo/dia3.jpg",
       lectura: {
         referencia: "Lucas 1,39-45",
         fuente: FUENTE_BIBLICA,
@@ -133,8 +133,8 @@ María responde con el Magníficat, y en él anuncia que todas las generaciones 
     {
       dia: 4,
       titulo: "San José, hombre justo",
-      imagenVitral: "images/vitral/dia4.png",
-      imagenOrtodoxo: "images/ortodoxo/dia4.png",
+      imagenVitral: "images/vitral/dia4.jpg",
+      imagenOrtodoxo: "images/ortodoxo/dia4.jpg",
       lectura: {
         referencia: "Mateo 1,18-25",
         fuente: FUENTE_BIBLICA,
@@ -157,8 +157,8 @@ José nos recuerda que la fe no se demuestra solo con palabras bonitas, sino con
     {
       dia: 5,
       titulo: "El camino a Belén",
-      imagenVitral: "images/vitral/dia5.png",
-      imagenOrtodoxo: "images/ortodoxo/dia5.png",
+      imagenVitral: "images/vitral/dia5.jpg",
+      imagenOrtodoxo: "images/ortodoxo/dia5.jpg",
       lectura: {
         referencia: "Lucas 2,1-5",
         fuente: FUENTE_BIBLICA,
@@ -175,8 +175,8 @@ Su ejemplo nos invita a descubrir a Dios también en las dificultades, en las ob
     {
       dia: 6,
       titulo: "No había lugar en la posada",
-      imagenVitral: "images/vitral/dia6.png",
-      imagenOrtodoxo: "images/ortodoxo/dia6.png",
+      imagenVitral: "images/vitral/dia6.jpg",
+      imagenOrtodoxo: "images/ortodoxo/dia6.jpg",
       lectura: {
         referencia: "Lucas 2,6-7",
         fuente: FUENTE_BIBLICA,
@@ -193,8 +193,8 @@ Aprovechemos esta novena para revisar nuestro corazón: ¿está tan lleno de ocu
     {
       dia: 7,
       titulo: "El anuncio a los pastores",
-      imagenVitral: "images/vitral/dia7.png",
-      imagenOrtodoxo: "images/ortodoxo/dia7.png",
+      imagenVitral: "images/vitral/dia7.jpg",
+      imagenOrtodoxo: "images/ortodoxo/dia7.jpg",
       lectura: {
         referencia: "Lucas 2,8-14",
         fuente: FUENTE_BIBLICA,
@@ -213,8 +213,8 @@ Esa paz no es solo que se acaben las peleas o tener un rato de tranquilidad. Es 
     {
       dia: 8,
       titulo: "Los pastores adoran al Niño",
-      imagenVitral: "images/vitral/dia8.png",
-      imagenOrtodoxo: "images/ortodoxo/dia8.png",
+      imagenVitral: "images/vitral/dia8.jpg",
+      imagenOrtodoxo: "images/ortodoxo/dia8.jpg",
       lectura: {
         referencia: "Lucas 2,15-20",
         fuente: FUENTE_BIBLICA,
@@ -235,8 +235,8 @@ María nos enseña a hacer silencio, a leer la Palabra con calma y a descubrir l
     {
       dia: 9,
       titulo: "La Palabra se hizo carne",
-      imagenVitral: "images/vitral/dia9.png",
-      imagenOrtodoxo: "images/ortodoxo/dia9.png",
+      imagenVitral: "images/vitral/dia9.jpg",
+      imagenOrtodoxo: "images/ortodoxo/dia9.jpg",
       lectura: {
         referencia: "Juan 1,1-14",
         fuente: FUENTE_BIBLICA,

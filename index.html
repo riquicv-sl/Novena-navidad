@@ -4,20 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Novena de Navidad - Tradicional y Bíblica</title>
-  <meta name="description" content="Una Novena de Navidad centrada en las Sagradas Escrituras y en Jesucristo, ideal para compartir en familia. Con accesibilidad mejorada para adultos mayores.">
-  
+  <meta name="description" content="Una Novena de Navidad centrada en las Sagradas Escrituras y en Jesucristo, ideal para compartir en familia. En español y portugués, con accesibilidad mejorada para adultos mayores.">
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-  
+
   <!-- FontAwesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="theme-dark">
+  <!--
+    Los textos con data-i18n se traducen desde ui-strings.js.
+    data-i18n       → cambia el texto del elemento
+    data-i18n-aria  → cambia el aria-label (lectores de pantalla)
+    data-i18n-title → cambia el title (texto al pasar el mouse)
+  -->
   <div class="background-decorations">
     <div class="starry-background"></div>
     <div class="ambient-glow"></div>
@@ -26,26 +32,35 @@
   <header class="app-header">
     <div class="header-content">
       <div class="header-titles">
-        <h1>Novena de Navidad</h1>
-        <p class="subtitle">Palabra de Dios y Oración</p>
+        <h1 data-i18n="appTitle">Novena de Navidad</h1>
+        <p class="subtitle" data-i18n="subtitle">Palabra de Dios y Oración</p>
       </div>
-      
+
       <!-- Accessibility & Settings Panel -->
-      <div class="control-panel" role="region" aria-label="Controles de accesibilidad">
-        <!-- Font Size Controls -->
+      <div class="control-panel" role="region" aria-label="Controles de accesibilidad" data-i18n-aria="controlsRegion">
+        <!-- Language Controls -->
         <div class="control-group">
-          <span class="control-label"><i class="fa-solid fa-text-height"></i> Letra</span>
+          <span class="control-label"><i class="fa-solid fa-language"></i> <span data-i18n="lblIdioma">Idioma</span></span>
           <div class="btn-group">
-            <button id="btn-font-dec" class="control-btn" aria-label="Disminuir tamaño de letra">A-</button>
-            <button id="btn-font-norm" class="control-btn active" aria-label="Tamaño de letra normal">A</button>
-            <button id="btn-font-inc" class="control-btn" aria-label="Aumentar tamaño de letra">A+</button>
+            <button id="btn-lang-es" class="control-btn active" lang="es" aria-label="Español" data-i18n-aria="ariaLangEs">ES</button>
+            <button id="btn-lang-pt" class="control-btn" lang="pt-BR" aria-label="Portugués (Brasil)" data-i18n-aria="ariaLangPt">PT</button>
           </div>
         </div>
-        
+
+        <!-- Font Size Controls -->
+        <div class="control-group">
+          <span class="control-label"><i class="fa-solid fa-text-height"></i> <span data-i18n="lblLetra">Letra</span></span>
+          <div class="btn-group">
+            <button id="btn-font-dec" class="control-btn" aria-label="Disminuir tamaño de letra" data-i18n-aria="ariaFontDec">A-</button>
+            <button id="btn-font-norm" class="control-btn active" aria-label="Tamaño de letra normal" data-i18n-aria="ariaFontNorm">A</button>
+            <button id="btn-font-inc" class="control-btn" aria-label="Aumentar tamaño de letra" data-i18n-aria="ariaFontInc">A+</button>
+          </div>
+        </div>
+
         <!-- Theme Controls -->
         <div class="control-group">
-          <span class="control-label"><i class="fa-solid fa-circle-half-stroke"></i> Tema</span>
-          <button id="btn-theme-toggle" class="control-btn icon-btn" aria-label="Cambiar tema claro/oscuro">
+          <span class="control-label"><i class="fa-solid fa-circle-half-stroke"></i> <span data-i18n="lblTema">Tema</span></span>
+          <button id="btn-theme-toggle" class="control-btn icon-btn" aria-label="Cambiar entre tema claro y oscuro" data-i18n-aria="ariaTheme">
             <i class="fa-solid fa-sun" id="theme-icon-light"></i>
             <i class="fa-solid fa-moon" id="theme-icon-dark"></i>
           </button>
@@ -53,17 +68,17 @@
 
         <!-- Illustration Style Controls -->
         <div class="control-group">
-          <span class="control-label"><i class="fa-solid fa-image"></i> Ilustración</span>
+          <span class="control-label"><i class="fa-solid fa-image"></i> <span data-i18n="lblIlustracion">Ilustración</span></span>
           <div class="btn-group">
-            <button id="btn-style-vitral" class="control-btn active" aria-label="Estilo vitral clásico">Vitral</button>
-            <button id="btn-style-icono" class="control-btn" aria-label="Estilo iconografía ortodoxa">Icono</button>
+            <button id="btn-style-vitral" class="control-btn active" aria-label="Ilustraciones en estilo vitral" data-i18n-aria="ariaVitral" data-i18n="btnVitral">Vitral</button>
+            <button id="btn-style-icono" class="control-btn" aria-label="Ilustraciones en estilo icono ortodoxo" data-i18n-aria="ariaIcono" data-i18n="btnIcono">Icono</button>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Day Navigation Progress Bar -->
-    <nav class="day-navbar" aria-label="Selector de días">
+    <nav class="day-navbar" aria-label="Selector de días" data-i18n-aria="daysNav">
       <ul class="day-list" id="day-selector-list">
         <!-- Generado dinámicamente por JS -->
       </ul>
@@ -73,19 +88,19 @@
   <main class="app-main">
     <!-- Main Card Container -->
     <article class="novena-card" id="main-novena-card">
-      
+
       <!-- Day Hero Section (Title + Illustration) -->
       <section class="card-hero">
         <div class="hero-text">
-          <span class="day-badge" id="hero-day-badge">Día X</span>
-          <h2 id="hero-day-title">Cargando Título...</h2>
+          <span class="day-badge" id="hero-day-badge">Día 1 de 9</span>
+          <h2 id="hero-day-title"></h2>
         </div>
         <div class="hero-image-wrapper">
           <div class="image-loading-placeholder" id="image-loader">
             <i class="fa-solid fa-spinner fa-spin"></i>
-            <span>Cargando ilustración sacra...</span>
+            <span data-i18n="loadingImage">Cargando ilustración...</span>
           </div>
-          <img id="hero-illustration" src="" alt="Ilustración sacra del día" class="hero-image hidden animated">
+          <img id="hero-illustration" src="" alt="" class="hero-image hidden animated">
           <!-- Estrellas animadas para niños -->
           <div class="sparkles-overlay">
             <div class="sparkle s1"><i class="fa-solid fa-star"></i></div>
@@ -98,24 +113,24 @@
 
       <!-- Reading Progress Tracker (Steps) -->
       <div class="progress-steps" id="progress-steps-indicator">
-        <button class="step-dot active" data-step="0" title="Oración Inicial">1</button>
-        <button class="step-dot" data-step="1" title="Lectura Bíblica">2</button>
-        <button class="step-dot" data-step="2" title="Reflexión">3</button>
-        <button class="step-dot" data-step="3" title="Gozos Mesiánicos">4</button>
-        <button class="step-dot" data-step="4" title="Peticiones">5</button>
-        <button class="step-dot" data-step="5" title="Oración Final">6</button>
+        <button class="step-dot active" data-step="0">1</button>
+        <button class="step-dot" data-step="1">2</button>
+        <button class="step-dot" data-step="2">3</button>
+        <button class="step-dot" data-step="3">4</button>
+        <button class="step-dot" data-step="4">5</button>
+        <button class="step-dot" data-step="5">6</button>
       </div>
 
       <!-- Step Content Area -->
       <section class="card-content-area" id="card-content-area">
-        
+
         <!-- Step 1: Oración Inicial -->
         <div class="step-pane active" id="pane-step-0" role="tabpanel">
           <div class="card-section-header">
-            <span class="section-tag"><i class="fa-solid fa-hands-praying"></i> Para comenzar</span>
-            <h3>Oración de Apertura</h3>
+            <span class="section-tag"><i class="fa-solid fa-hands-praying"></i> <span data-i18n="tagInicio">Para comenzar</span></span>
+            <h3 id="title-oracion-inicial"></h3>
           </div>
-          
+
           <div class="step-illustration">
             <i class="fa-solid fa-church"></i>
           </div>
@@ -123,7 +138,7 @@
           <div class="reminder-box green-reminder">
             <i class="fa-solid fa-music"></i>
             <div>
-              <strong>Recordatorio:</strong> Los invitamos a entonar un villancico tradicional en familia para preparar el corazón antes de orar.
+              <strong data-i18n="reminderLabel">Recordatorio:</strong> <span data-i18n="reminderStart"></span>
             </div>
           </div>
 
@@ -135,10 +150,10 @@
         <!-- Step 2: Lectura Bíblica -->
         <div class="step-pane" id="pane-step-1" role="tabpanel">
           <div class="card-section-header">
-            <span class="section-tag"><i class="fa-solid fa-book-bible"></i> Palabra de Dios</span>
-            <h3 id="label-lectura-ref">Lectura Bíblica</h3>
+            <span class="section-tag"><i class="fa-solid fa-book-bible"></i> <span data-i18n="tagLectura">Palabra de Dios</span></span>
+            <h3 id="label-lectura-ref"></h3>
           </div>
-          
+
           <div class="step-illustration">
             <i class="fa-solid fa-book-open-reader"></i>
           </div>
@@ -146,15 +161,17 @@
           <blockquote class="bible-reading lora-font" id="text-lectura-biblica">
             <!-- Cargado por JS -->
           </blockquote>
+
+          <p class="reading-note" id="text-lectura-nota"><!-- Aviso de paráfrasis, cargado por JS --></p>
         </div>
 
         <!-- Step 3: Reflexión -->
         <div class="step-pane" id="pane-step-2" role="tabpanel">
           <div class="card-section-header">
-            <span class="section-tag"><i class="fa-solid fa-heart"></i> Meditación</span>
-            <h3>Reflexión Diaria</h3>
+            <span class="section-tag"><i class="fa-solid fa-heart"></i> <span data-i18n="tagReflexion">Meditación</span></span>
+            <h3 data-i18n="titleReflexion">Reflexión diaria</h3>
           </div>
-          
+
           <div class="step-illustration">
             <i class="fa-solid fa-dove"></i>
           </div>
@@ -164,21 +181,21 @@
           </div>
         </div>
 
-        <!-- Step 4: Gozos Mesiánicos -->
+        <!-- Step 4: Gozos -->
         <div class="step-pane" id="pane-step-3" role="tabpanel">
           <div class="card-section-header">
-            <span class="section-tag"><i class="fa-solid fa-fire"></i> Anhelo de salvación</span>
-            <h3>Gozos Mesiánicos del Emmanuel</h3>
+            <span class="section-tag"><i class="fa-solid fa-fire"></i> <span data-i18n="tagGozos">Anhelo de salvación</span></span>
+            <h3 id="title-gozos"></h3>
           </div>
 
           <div class="step-illustration">
-            <i class="fa-solid fa-star-of-david"></i>
+            <i class="fa-solid fa-star"></i>
           </div>
 
-          <p class="section-instruction"><i class="fa-solid fa-info-circle"></i> Haz clic en las estrofas para responder con el estribillo.</p>
+          <p class="section-instruction"><i class="fa-solid fa-info-circle"></i> <span data-i18n="instruccionGozos"></span></p>
 
           <div class="chorus-card" id="gozos-chorus-card">
-            <span class="chorus-label">Estribillo (Todos responden):</span>
+            <span class="chorus-label" data-i18n="chorusLabel">Estribillo (todos responden):</span>
             <p class="chorus-text" id="text-gozos-estribillo"><!-- Cargado por JS --></p>
           </div>
 
@@ -190,8 +207,8 @@
         <!-- Step 5: Peticiones -->
         <div class="step-pane" id="pane-step-4" role="tabpanel">
           <div class="card-section-header">
-            <span class="section-tag"><i class="fa-solid fa-circle-question"></i> Plegaria común</span>
-            <h3>Oración de Intercesión</h3>
+            <span class="section-tag"><i class="fa-solid fa-people-group"></i> <span data-i18n="tagPeticiones">Plegaria común</span></span>
+            <h3 data-i18n="titlePeticiones">Oración de intercesión</h3>
           </div>
 
           <div class="step-illustration">
@@ -205,8 +222,8 @@
           <div class="peticion-personal-box">
             <i class="fa-solid fa-comment-dots"></i>
             <div>
-              <strong>Momento de Silencio:</strong>
-              <p>Hagamos en silencio nuestras intenciones particulares por la familia, los enfermos, las necesidades del hogar y del mundo...</p>
+              <strong data-i18n="silenceLabel">Momento de silencio:</strong>
+              <p data-i18n="silenceText"></p>
             </div>
           </div>
         </div>
@@ -214,8 +231,8 @@
         <!-- Step 6: Oración Final -->
         <div class="step-pane" id="pane-step-5" role="tabpanel">
           <div class="card-section-header">
-            <span class="section-tag"><i class="fa-solid fa-cross"></i> Acogiendo al Verbo</span>
-            <h3>Oración de Despedida (Niño Jesús)</h3>
+            <span class="section-tag"><i class="fa-solid fa-cross"></i> <span data-i18n="tagFinal">Para terminar</span></span>
+            <h3 id="title-oracion-final"></h3>
           </div>
 
           <div class="step-illustration">
@@ -229,7 +246,7 @@
           <div class="reminder-box green-reminder">
             <i class="fa-solid fa-music"></i>
             <div>
-              <strong>Recordatorio:</strong> Para cerrar el día con alegría, cantemos juntos un villancico alegre (ej. "Los Peces en el Río", "Mi Burrito Sabanero").
+              <strong data-i18n="reminderLabel">Recordatorio:</strong> <span data-i18n="reminderEnd"></span>
             </div>
           </div>
         </div>
@@ -238,16 +255,16 @@
 
       <!-- Navigation & Action Footer inside the Card -->
       <footer class="card-actions-footer">
-        <button id="btn-prev-step" class="action-btn secondary-btn" aria-label="Ir al paso anterior">
-          <i class="fa-solid fa-arrow-left"></i> Atrás
+        <button id="btn-prev-step" class="action-btn secondary-btn" aria-label="Ir al paso anterior" data-i18n-aria="ariaPrev">
+          <i class="fa-solid fa-arrow-left"></i> <span data-i18n="btnPrev">Atrás</span>
         </button>
 
-        <button id="btn-mark-complete" class="action-btn accent-btn" aria-label="Marcar este día como completado">
-          <i class="fa-solid fa-circle-check"></i> <span id="mark-complete-label">Completar Día</span>
+        <button id="btn-mark-complete" class="action-btn accent-btn" aria-label="Marcar este día como completado" data-i18n-aria="ariaMarkComplete">
+          <i class="fa-solid fa-circle"></i> <span id="mark-complete-label">Marcar completado</span>
         </button>
 
-        <button id="btn-next-step" class="action-btn primary-btn" aria-label="Ir al paso siguiente">
-          Siguiente <i class="fa-solid fa-arrow-right"></i>
+        <button id="btn-next-step" class="action-btn primary-btn" aria-label="Ir al paso siguiente" data-i18n-aria="ariaNext">
+          <span id="next-step-label">Siguiente</span> <i class="fa-solid fa-arrow-right" id="next-step-icon"></i>
         </button>
       </footer>
 
@@ -256,25 +273,27 @@
     <!-- Global Progress Controls & Info -->
     <section class="global-progress-bar">
       <div class="progress-info">
-        <span>Progreso general de la novena:</span>
-        <strong id="global-progress-percentage">0% (0 de 9 días)</strong>
+        <span data-i18n="progressLabel">Progreso general de la novena:</span>
+        <strong id="global-progress-percentage"></strong>
       </div>
       <div class="progress-track">
         <div class="progress-fill" id="global-progress-fill"></div>
       </div>
-      <button id="btn-reset-progress" class="reset-btn" aria-label="Reiniciar progreso de lectura">
-        <i class="fa-solid fa-rotate-left"></i> Reiniciar Novena
+      <button id="btn-reset-progress" class="reset-btn" aria-label="Reiniciar el progreso de la novena" data-i18n-aria="ariaReset">
+        <i class="fa-solid fa-rotate-left"></i> <span data-i18n="btnReset">Reiniciar novena</span>
       </button>
     </section>
   </main>
 
   <footer class="app-footer-info">
-    <p>Novena de Navidad &copy; 2026. Diseñada para unir familias en Cristo.</p>
-    <p class="creds">Citas bíblicas tomadas de las Sagradas Escrituras. Enfocada en la verdad histórica y en nuestro Salvador.</p>
+    <p data-i18n="footerMain">Novena de Navidad © 2026. Diseñada para unir familias en Cristo.</p>
+    <p class="creds" data-i18n="footerCreds"></p>
   </footer>
 
-  <!-- App Logic Scripts -->
+  <!-- App Logic Scripts (el orden importa: primero los datos, luego la lógica) -->
   <script src="novena-data.js"></script>
+  <script src="novena-data-pt.js"></script>
+  <script src="ui-strings.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
