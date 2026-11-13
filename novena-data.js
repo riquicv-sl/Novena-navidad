@@ -1,51 +1,65 @@
 // novena-data.js
-// Datos y textos de la Novena de Navidad Ecuménica
+// Datos y textos de la Novena de Navidad
+//
+// CITAS BÍBLICAS: numeración católica, formato "Libro capítulo,versículos"
+// (la misma de la Biblia Latinoamericana y la Biblia de Jerusalén).
+//
+// LECTURAS: son paráfrasis en lenguaje sencillo, redactadas para esta novena
+// a partir del sentido del texto bíblico. NO son citas literales de ninguna
+// edición. Para el texto exacto, consultar la Biblia Latinoamericana o la
+// Biblia de Jerusalén.
+
+const FUENTE_BIBLICA = "Paráfrasis en lenguaje sencillo (texto exacto: Biblia Latinoamericana o Biblia de Jerusalén)";
 
 const NOVENA_DATA = {
+  fuenteBiblica: FUENTE_BIBLICA,
+
   oracionInicial: {
-    titulo: "Oración de Apertura (Inicial)",
+    titulo: "Oración inicial",
     instrucciones: "Se recomienda cantar un villancico antes de comenzar esta oración.",
-    texto: `Amado Dios, Padre de misericordia, que tanto amaste al mundo que nos diste a tu Hijo único, Jesucristo, para que todo el que crea en Él no se pierda, sino que tenga vida eterna. Al comenzar esta Novena de Navidad, abrimos las puertas de nuestro hogar y de nuestro corazón para recibir tu luz. 
+    texto: `Padre bueno y lleno de misericordia: amaste tanto al mundo que nos diste a tu único Hijo, Jesucristo, para que todo el que crea en Él no se pierda, sino que tenga vida eterna. Al comenzar esta Novena de Navidad, abrimos las puertas de nuestra casa y de nuestro corazón para recibir tu luz.
 
-Envía tu Santo Espíritu sobre nosotros, para que esta lectura de tu Palabra nos transforme. Concédenos la gracia de preparar un pesebre espiritual en nuestro interior, donde tu Hijo pueda nacer de nuevo. Te pedimos por la paz del mundo, por la unión de nuestras familias y por el consuelo de los que sufren. Que tu amor disipe toda división y nos una en el vínculo de la paz. 
+Envía tu Espíritu Santo sobre nosotros, para que tu Palabra nos cambie por dentro. Ayúdanos a preparar en nuestro interior un pesebre donde tu Hijo pueda nacer. Te pedimos por la paz del mundo, por la unión de nuestras familias y por el consuelo de quienes sufren. Que tu amor venza toda división y nos mantenga unidos en la paz.
 
-Te lo pedimos en el nombre de Jesús, nuestro Salvador. Amén.`
+Te lo pedimos en el nombre de Jesús, nuestro Salvador. Amén.`,
+    referencias: ["Juan 3,16"]
   },
-  
-  oracionFinal: {
-    titulo: "Oración de Despedida (Niño Jesús)",
-    texto: `Señor Jesús, Verbo eterno que te hiciste carne y habitaste entre nosotros lleno de gracia y de verdad. Te adoramos en el misterio de tu santa infancia y te damos gracias por tu infinita humildad. Tú, siendo Dios, te despojaste de tu gloria para asumir nuestra condición humana, naciendo en la pobreza de un pesebre.
 
-Te rogamos, dulce Salvador, que habites en nosotros por tu gracia. Transforma nuestros corazones de piedra en corazones de carne, capaces de amar como Tú nos amas. Bendice nuestro hogar, concédenos la salud del alma y del cuerpo, y haznos testigos alegres de tu Evangelio. Que la alegría de tu venida permanezca siempre con nosotros.
+  oracionFinal: {
+    titulo: "Oración final al Niño Jesús",
+    instrucciones: "Se recomienda cantar un villancico para concluir el día de la novena.",
+    texto: `Señor Jesús, Palabra eterna del Padre, que te hiciste hombre y viniste a vivir entre nosotros, lleno de amor y de verdad: te adoramos en tu infancia y te damos gracias por tu humildad. Siendo Dios, quisiste hacerte uno de nosotros y nacer pobre en un pesebre.
+
+Te pedimos, Niño Jesús, que vivas en nosotros. Cambia nuestro corazón de piedra por un corazón capaz de amar como Tú nos amas. Bendice nuestro hogar, danos salud de alma y cuerpo, y haz que seamos testigos alegres de tu Evangelio. Que la alegría de tu venida se quede siempre con nosotros.
 
 Tú que vives y reinas por los siglos de los siglos. Amén.`,
-    instrucciones: "Se recomienda cantar un villancico para concluir el día de la novena."
+    referencias: ["Juan 1,14", "Filipenses 2,6-7", "Ezequiel 36,26"]
   },
 
   gozos: {
-    titulo: "Gozos Mesiánicos del Emmanuel",
+    titulo: "Gozos al Emmanuel",
     instrucciones: "Respondemos a cada estrofa con el estribillo.",
     estribillo: "¡Ven, oh Señor, nuestro Salvador, ven a encender tu luz de amor!",
     estrofas: [
       {
-        texto: "Oh Verbo eterno, del Padre esplendor,\nque te revistes de nuestra carne,\nlíbranos de la noche del error.",
-        referencia: "Basado en Juan 1:14"
+        texto: "Oh Palabra eterna, del Padre esplendor,\nque te hiciste carne como nosotros,\nlíbranos de la noche del error.",
+        referencia: "Basado en Juan 1,14"
       },
       {
         texto: "Oh Sabiduría que todo lo guías,\nven a enseñarnos la senda de paz;\nsé Tú el lucero que alumbra los días.",
-        referencia: "Basado en Isaías 11:2"
+        referencia: "Basado en Isaías 11,2"
       },
       {
-        texto: "Prometido Emmanuel, Rey de las naciones,\nanhelo del alma y del corazón,\nven a reinar en nuestros hogares.",
-        referencia: "Basado en Isaías 7:14"
+        texto: "Emmanuel prometido, Rey de las naciones,\nesperanza del alma y del corazón,\nven a reinar en nuestros hogares.",
+        referencia: "Basado en Isaías 7,14"
       },
       {
         texto: "Estrella del alba, lucero sin fin,\nque anuncias la gracia y la salvación,\nven a traernos tu luz celestial.",
-        referencia: "Basado en 2 Pedro 1:19"
+        referencia: "Basado en 2 Pedro 1,19"
       },
       {
-        texto: "Jesús de Belén, en pesebre acostado,\nven a nacer en nuestro interior;\npor tu humildad seamos transformados.",
-        referencia: "Basado en Lucas 2:7"
+        texto: "Jesús de Belén, en pesebre acostado,\nven a nacer en nuestro interior;\nque tu humildad nos deje transformados.",
+        referencia: "Basado en Lucas 2,7"
       }
     ]
   },
@@ -53,31 +67,48 @@ Tú que vives y reinas por los siglos de los siglos. Amén.`,
   dias: [
     {
       dia: 1,
-      titulo: "La Promesa del Salvador",
+      titulo: "La promesa del Salvador",
       imagenVitral: "images/vitral/dia1.png",
       imagenOrtodoxo: "images/ortodoxo/dia1.png",
       lectura: {
-        referencia: "Isaías 9:2-7",
-        texto: `El pueblo que andaba en tinieblas vio gran luz; los que moraban en tierra de sombra de muerte, luz resplandeció sobre ellos. Multiplicaste la gente, y aumentaste la alegría. Se alegrarán delante de ti como se alegran en la siega, como se gozan cuando reparten despojos... Porque un niño nos es nacido, hijo nos es dado, y el principado sobre su hombro; y se llamará su nombre Admirable, Consejero, Dios Fuerte, Padre Eterno, Príncipe de Paz. Lo dilatado de su imperio y la paz no tendrán límite, sobre el trono de David y sobre su reino, disponiéndolo y confirmándolo en juicio y en justicia desde ahora y para siempre.`
-      },
-      reflexion: `La promesa del Mesías atraviesa toda la historia de la salvación. En momentos de profunda oscuridad y exilio, Dios infunde esperanza a través del profeta Isaías. No nos promete una idea abstracta, sino una intervención real y concreta: "un niño nos es nacido". 
+        referencia: "Isaías 9,1-6",
+        notaReferencia: "En algunas Biblias aparece como Isaías 9,2-7.",
+        fuente: FUENTE_BIBLICA,
+        esParafrasis: true,
+        texto: `El pueblo que caminaba en la oscuridad ha visto una luz muy grande; sobre los que vivían en una tierra de sombras ha brillado la luz. Tú, Señor, has hecho crecer a tu pueblo y le has dado una inmensa alegría: se alegran delante de ti como en tiempo de cosecha, como cuando se reparte lo ganado en la batalla. Porque has roto el yugo que los aplastaba, la carga que llevaban sobre los hombros y el látigo del opresor, como en la victoria sobre Madián. Las botas de los soldados, que hacían retumbar la tierra, y los mantos manchados de sangre serán quemados en el fuego.
 
-Aquí contemplamos una verdad fundamental de nuestra fe: Dios no actúa en el vacío ni nos salva de manera aislada o mágica. Él elige entrar en el tiempo humano, preparándose un pueblo, una genealogía y un camino histórico. Esto nos muestra el gran principio de la cooperación: Dios, en su infinita gracia, valora y eleva la participación humana. Al preparar la venida de su Hijo, Dios une el cielo y la tierra. La salvación es enteramente un don de su gracia soberana, pero una gracia que busca, transforma y capacita al ser humano para responderle y colaborar activamente en su plan de amor. Que en este primer día le pidamos al Señor la docilidad para ser canales de su luz en medio de las tinieblas de nuestro mundo.`,
-      peticion: "Te pedimos, Señor, que enciendas en nuestros corazones la llama de la esperanza y nos concedas la gracia de ser constructores de paz en nuestras familias."
+Porque nos ha nacido un niño, se nos ha dado un hijo. Sobre sus hombros llevará el gobierno, y su nombre será: Consejero maravilloso, Dios fuerte, Padre para siempre, Príncipe de la paz. Su poder crecerá y la paz no tendrá fin. Se sentará en el trono de David y gobernará su reino, y lo sostendrá con el derecho y la justicia desde ahora y para siempre. El amor ardiente del Señor del universo hará todo esto.`
+      },
+      reflexion: `Isaías habló en un tiempo muy duro para su pueblo: había guerra, miedo y destierro. En medio de esa oscuridad, Dios no les dio una idea bonita, sino una promesa concreta: va a nacer un niño, y ese niño traerá la paz (Isaías 9,5).
+
+Dios pudo salvarnos de muchas maneras, pero eligió entrar en nuestra historia. Preparó un pueblo, una familia y un camino, y contó con personas de carne y hueso. La salvación es un regalo que viene totalmente de Él, pero es un regalo que nos busca, nos cambia por dentro y nos invita a responder. En este primer día pidámosle al Señor un corazón dispuesto, para ser pequeñas luces en medio de las sombras de nuestro mundo.`,
+      peticion: "Señor, enciende en nuestros corazones la llama de la esperanza y ayúdanos a construir la paz en nuestras familias."
     },
     {
       dia: 2,
-      titulo: "La Anunciación y el Sí de María",
+      titulo: "La Anunciación: el sí de María",
       imagenVitral: "images/vitral/dia2.png",
       imagenOrtodoxo: "images/ortodoxo/dia2.png",
       lectura: {
-        referencia: "Lucas 1:26-38",
-        texto: `Al sexto mes el ángel Gabriel fue enviado por Dios a una ciudad de Galilea, llamada Nazaret, a una virgen desposada con un varón que se llamaba José, de la casa de David; y el nombre de la virgen era María. Y entrando el ángel en donde ella estaba, dijo: ¡Salve, muy favorecida! El Señor es contigo; bendita tú entre las mujeres... El ángel le dijo: María, no temas, porque has hallado gracia delante de Dios. Y ahora, concebirás en tu vientre, y darás a luz un hijo, y llamarás su nombre JESÚS... Entonces María dijo: He aquí la sierva del Señor; hágase en mí según tu palabra. Y el ángel se fue de su presencia.`
-      },
-      reflexion: `El pasaje de la Anunciación es uno de los momentos cumbres de la Escritura. El saludo del ángel en el griego original utiliza la palabra *Kecharitomene*, traducida tradicionalmente como "llena de gracia", indicando que Dios ya había realizado una obra transformadora y preparatoria en ella antes de este encuentro. 
+        referencia: "Lucas 1,26-38",
+        fuente: FUENTE_BIBLICA,
+        esParafrasis: true,
+        texto: `Seis meses después, Dios envió al ángel Gabriel a un pueblo de Galilea llamado Nazaret. Lo mandó a una joven virgen que estaba comprometida para casarse con José, un hombre descendiente del rey David. La joven se llamaba María. El ángel entró donde ella estaba y le dijo: «¡Alégrate, llena de gracia! El Señor está contigo». María se inquietó mucho al oír estas palabras y se preguntaba qué significaba ese saludo.
 
-La respuesta de María a este designio divino es un sí absoluto: "Hágase en mí según tu palabra". Este *Fiat* no es una simple sumisión pasiva, sino un acto libre de fe, confianza y obediencia amorosa. Ella no dice simplemente "está bien", sino que abraza activamente el plan de Dios, convirtiéndose en la primera discípula y en el modelo perfecto de la fe cristiana. En María vemos de manera bellísima cómo la gracia divina no anula la libertad del ser humano, sino que la libera y la capacita para dar un fruto santo. Su obediencia alivia la desobediencia original, recordándonos que cuando nos abrimos por completo a la gracia, el Salvador puede tomar carne en nuestras vidas y manifestarse al mundo.`,
-      peticion: "Te pedimos, Señor, que a ejemplo de María sepamos escuchar tu voz con atención y responder a tus llamados con un 'sí' generoso y alegre."
+El ángel le dijo: «No tengas miedo, María, porque has encontrado el favor de Dios. Vas a quedar embarazada y darás a luz un hijo, y le pondrás por nombre Jesús. Él será grande y lo llamarán Hijo del Altísimo. El Señor Dios le dará el trono de David, su antepasado; reinará para siempre sobre el pueblo de Jacob, y su reino no tendrá fin».
+
+María le preguntó al ángel: «¿Cómo será esto, si yo soy virgen?». El ángel le respondió: «El Espíritu Santo vendrá sobre ti y el poder del Altísimo te cubrirá con su sombra. Por eso, el niño santo que va a nacer será llamado Hijo de Dios. Mira, tu parienta Isabel, a pesar de ser anciana, también espera un hijo; la que decían que no podía tener hijos ya está en su sexto mes. Porque para Dios no hay nada imposible».
+
+Entonces María dijo: «Aquí está la servidora del Señor. Hágase en mí según tu palabra». Y el ángel se fue.`
+      },
+      reflexion: `La Anunciación es uno de los momentos más importantes de toda la Biblia. Aquí Dios, por así decirlo, pide permiso para hacerse hombre, y espera la respuesta de una joven de Nazaret.
+
+El ángel no llama a María por su nombre, sino con un título: «llena de gracia». En griego, la palabra es Kecharitomene, y está en un tiempo verbal que indica algo que ya ocurrió y que permanece: María no recibe la gracia en ese momento, sino que ya había sido llenada de ella, y lo sigue estando. La Iglesia ve en este saludo uno de los fundamentos de la Inmaculada Concepción: Dios, por los méritos de Cristo, preparó a María desde el primer instante de su vida para ser la madre de su Hijo, libre de todo pecado.
+
+María responde: «Hágase en mí según tu palabra» (Lucas 1,38). Este sí, que la tradición llama Fiat, no es resignación ni pasividad. Es un acto libre de fe y de amor, y de él depende que el Hijo de Dios tome nuestra carne. Por eso los primeros cristianos, como San Ireneo de Lyon, llamaron a María la nueva Eva: lo que Eva había atado con su desobediencia, María lo desató con su fe.
+
+María es la primera discípula y el modelo perfecto de la fe. En ella vemos que la gracia de Dios no anula nuestra libertad, sino que la lleva a su plenitud. Cuando nosotros también le decimos sí a Dios, Jesús puede nacer en nuestra vida y llegar a los demás a través de nosotros.`,
+      peticion: "Señor, que a ejemplo de María sepamos escuchar tu voz y responder a tus llamados con un sí generoso y alegre."
     },
     {
       dia: 3,
@@ -85,97 +116,145 @@ La respuesta de María a este designio divino es un sí absoluto: "Hágase en m�
       imagenVitral: "images/vitral/dia3.png",
       imagenOrtodoxo: "images/ortodoxo/dia3.png",
       lectura: {
-        referencia: "Lucas 1:39-45",
-        texto: `En aquellos días, levantándose María, fue de prisa a la montaña, a una ciudad de Judá; y entró en casa de Zacarías, y saludó a Isabel. Y aconteció que cuando oyó Isabel el saludo de María, el bebé saltó en su vientre; e Isabel fue llena del Espíritu Santo, y exclamó a gran voz, y dijo: Bendita tú entre las mujeres, y bendito el fruto de tu vientre. ¿Por qué se me concede esto a mí, que la madre de mi Señor venga a mí? Porque tan pronto como llegó la voz de tu saludo a mis oídos, el bebé saltó de alegría en mi vientre. Y bienaventurada la que creyó, porque se cumplirá lo que le fue dicho de parte del Señor.`
+        referencia: "Lucas 1,39-45",
+        fuente: FUENTE_BIBLICA,
+        esParafrasis: true,
+        texto: `Por aquellos días, María se puso en camino y fue de prisa a una ciudad de la región montañosa de Judá. Entró en la casa de Zacarías y saludó a Isabel. En cuanto Isabel oyó el saludo de María, el niño saltó dentro de su vientre, e Isabel quedó llena del Espíritu Santo. Entonces exclamó con voz fuerte: «¡Bendita tú entre todas las mujeres, y bendito el fruto de tu vientre! ¿Quién soy yo para que venga a visitarme la madre de mi Señor? Apenas escuché tu saludo, el niño saltó de alegría en mi vientre. ¡Feliz tú, que has creído que se cumplirá todo lo que el Señor te ha dicho!».`
       },
-      reflexion: `Al enterarse de que su parienta Isabel está encinta en su vejez, María no se queda contemplando su propio misterio, sino que se pone en camino con prontitud para servir. Al entrar a la casa, la simple voz de su saludo desborda el Espíritu Santo sobre Isabel y hace saltar de gozo al precursor en su vientre.
+      reflexion: `Apenas recibe el anuncio del ángel, María no se queda pensando en sí misma: sale de prisa a servir a su parienta Isabel. Basta su saludo para que el niño salte de alegría en el vientre de Isabel y ella quede llena del Espíritu Santo. Es el Espíritu quien le hace reconocer a quién tiene delante.
 
-Isabel pronuncia unas palabras de honda trascendencia teológica: "¿Por qué se me concede esto a mí, que la madre de mi Señor venga a mí?". Al llamar a María "madre de mi Señor" (en el contexto bíblico, *Kyrios* o Señor se refiere al mismo Dios), la Escritura sienta las bases de lo que la Iglesia primitiva definiría como *Theotokos* (Madre de Dios). María actúa aquí como el primer Sagrario viviente, transportando la presencia física y real de Jesús. Lejos de retener los elogios para sí, María responde cantando el *Magnificat*, donde proclama: "Mi alma engrandece al Señor, y mi espíritu se regocija en Dios mi Salvador". De este modo, nos enseña la verdadera naturaleza de la devoción mariana: María es como la luna, no tiene luz propia, sino que refleja y nos conduce siempre a la luz infinita de su Hijo, nuestro Dios y Salvador.`,
-      peticion: "Te pedimos, Señor, un corazón servicial y atento a las necesidades de los demás, llevando siempre tu presencia y tu alegría a quienes nos rodean."
+San Lucas cuenta esta escena con detalles que recuerdan una historia del Antiguo Testamento: el traslado del Arca de la Alianza, el cofre sagrado que señalaba la presencia de Dios en medio de su pueblo. El rey David se preguntó cómo era posible que el Arca del Señor viniera a él, bailó de alegría delante de ella, y el Arca se quedó tres meses en una casa (2 Samuel 6,9-15). Isabel se hace la misma pregunta ante María, Juan salta de gozo en su vientre, y María se queda con ella unos tres meses (Lucas 1,56). Por eso la Iglesia llama a María Arca de la Nueva Alianza: ella no lleva las tablas de la Ley, sino al mismo Dios hecho hombre.
+
+Isabel la llama «la madre de mi Señor» (Lucas 1,43). En la Biblia, «Señor» es el nombre que se usa para Dios mismo. Por eso el Concilio de Éfeso, en el año 431, proclamó a María Theotokos, Madre de Dios. Este título no habla solo de ella, sino sobre todo de quién es Jesús: verdadero Dios desde el primer instante.
+
+María responde con el Magníficat, y en él anuncia que todas las generaciones la llamarán dichosa (Lucas 1,48). Cuando honramos a María, no añadimos algo ajeno a la Biblia: cumplimos lo que la misma Escritura anunció. Y ella nos muestra el sentido de ese honor, porque proclama la grandeza del Señor y se alegra en Dios, su Salvador (Lucas 1,46-47). Como la luna, que no tiene luz propia sino que refleja la del sol, María siempre nos lleva a su Hijo.`,
+      peticion: "Señor, danos un corazón servicial y atento a las necesidades de los demás, para llevar tu presencia y tu alegría a quienes nos rodean."
     },
     {
       dia: 4,
-      titulo: "San José, Varón Justo",
+      titulo: "San José, hombre justo",
       imagenVitral: "images/vitral/dia4.png",
       imagenOrtodoxo: "images/ortodoxo/dia4.png",
       lectura: {
-        referencia: "Mateo 1:18-25",
-        texto: `El nacimiento de Jesucristo fue así: Estando desposada María su madre con José, antes que se juntasen, se halló que había concebido del Espíritu Santo. José su marido, como era justo, y no quería infamarla, quiso dejarla secretamente. Y pensando él en esto, he aquí un ángel del Señor le apareció en sueños y le dijo: José, hijo de David, no temas recibir a María tu mujer, porque lo que en ella es engendrado, del Espíritu Santo es... Y despertando José del sueño, hizo como el ángel del Señor le había mandado, y recibió a su mujer.`
-      },
-      reflexion: `La figura de San José brilla por su silencio obsecuente y su profunda rectitud. La Escritura lo define como un hombre "justo". En la doctrina cristiana, la justicia no es simplemente cumplir con las leyes externas de manera fría, sino poseer una santidad interior, una rectitud de corazón alineada perfectamente con la voluntad divina. 
+        referencia: "Mateo 1,18-25",
+        fuente: FUENTE_BIBLICA,
+        esParafrasis: true,
+        texto: `Así fue el nacimiento de Jesucristo. María, su madre, estaba comprometida con José, y antes de que comenzaran a vivir juntos, se supo que esperaba un hijo por obra del Espíritu Santo. José, su esposo, que era un hombre justo y no quería ponerla en vergüenza delante de todos, pensó en separarse de ella en secreto.
 
-Frente a un misterio que lo superaba, José decide actuar con extrema caridad, buscando proteger a María en lugar de exponerla. Cuando Dios le revela su plan a través del ángel en sueños, José no duda, no pide explicaciones ni dice una sola palabra registrada en los Evangelios. Simplemente "hizo como el ángel del Señor le había mandado". Su silencio es un testimonio de fe activa. José asume el rol de padre legal de Jesús, dándole el linaje de David y protegiendo a la Sagrada Familia. Nos recuerda que la fe no solo se expresa con palabras o declaraciones solemnes, sino con la fidelidad cotidiana, el trabajo honesto y la custodia amorosa de aquellos que Dios pone a nuestro cuidado.`,
-      peticion: "Te pedimos, Señor, por los padres de familia y por todos aquellos que tienen responsabilidades de cuidado, para que actúen siempre con justicia, ternura y fidelidad."
+Mientras pensaba en esto, un ángel del Señor se le apareció en sueños y le dijo: «José, descendiente de David, no tengas miedo de recibir a María como tu esposa, porque el niño que espera viene del Espíritu Santo. Ella dará a luz un hijo, y tú le pondrás por nombre Jesús, porque él salvará a su pueblo de sus pecados».
+
+Todo esto sucedió para que se cumpliera lo que el Señor había dicho por medio del profeta: «La virgen quedará embarazada y dará a luz un hijo, y lo llamarán Emmanuel», que quiere decir «Dios con nosotros».
+
+Cuando José despertó, hizo lo que el ángel del Señor le había mandado y recibió a María como su esposa. María dio a luz a su hijo sin haber tenido relaciones con José, y él le puso por nombre Jesús.`
+      },
+      reflexion: `De San José, los Evangelios no recogen ni una sola palabra, y sin embargo su vida dice mucho. Mateo lo llama «hombre justo» (Mateo 1,19). En la Biblia, ser justo no es solo cumplir reglas: es tener un corazón recto, que busca de verdad lo que Dios quiere.
+
+Ante algo que no lograba entender, José decidió actuar con bondad: no quería exponer a María a la vergüenza pública. Cuando Dios le muestra su plan en sueños, José no discute ni pide pruebas. Simplemente hace lo que el ángel le ha mandado. Recibe a María en su casa, le pone a Jesús su nombre, le da un lugar en la familia de David y se dedica a cuidarlos.
+
+José nos recuerda que la fe no se demuestra solo con palabras bonitas, sino con la fidelidad de cada día: el trabajo honrado, la paciencia y el cuidado amoroso de las personas que Dios pone en nuestras manos.`,
+      peticion: "Señor, te pedimos por los padres de familia y por todos los que cuidan de otros, para que actúen siempre con justicia, ternura y fidelidad."
     },
     {
       dia: 5,
-      titulo: "El Camino a Belén",
+      titulo: "El camino a Belén",
       imagenVitral: "images/vitral/dia5.png",
       imagenOrtodoxo: "images/ortodoxo/dia5.png",
       lectura: {
-        referencia: "Lucas 2:1-5",
-        texto: `Aconteció en aquellos días, que se promulgó un edicto de parte de Augusto César, que todo el mundo fuese empadronado... E iban todos para ser empadronados, cada uno a su ciudad. Y José subió de Galilea, de la ciudad de Nazaret, a Judea, a la ciudad de David, que se llama Belén, por cuanto era de la casa y familia de David; para ser empadronado con María su mujer, desposada con él, la cual estaba encinta.`
+        referencia: "Lucas 2,1-5",
+        fuente: FUENTE_BIBLICA,
+        esParafrasis: true,
+        texto: `Por aquellos días, el emperador Augusto ordenó que se hiciera un censo de todos los habitantes del imperio. Este primer censo se hizo cuando Quirino gobernaba la provincia de Siria. Todos iban a inscribirse, cada uno a su pueblo de origen. José, que era descendiente de la familia de David, salió de Nazaret, en Galilea, y subió a Judea, a Belén, el pueblo de David, para inscribirse junto con María, su esposa, que estaba embarazada.`
       },
-      reflexion: `A veces nos cuesta ver la mano de Dios en los acontecimientos cotidianos de la política y la sociedad. Sin embargo, este pasaje nos muestra cómo Dios utiliza las estructuras humanas ordinarias —en este caso, un censo decretado por un emperador pagano— para cumplir sus promesas eternas. La profecía decía que el Mesías nacería en Belén (Miqueas 5:2), y el viaje se propicia precisamente a través de este censo.
+      reflexion: `A veces nos cuesta ver a Dios en lo que pasa en la política o en la vida de la sociedad. Sin embargo, este pasaje nos muestra que Dios puede servirse incluso de la orden de un emperador que no lo conocía. El profeta Miqueas había anunciado que el Mesías nacería en Belén (Miqueas 5,1), y es justamente un censo lo que lleva a José y a María hasta allí.
 
-Este suceso nos habla del "principio sacramental": la verdad de que Dios se sirve de lo material, de lo histórico y de las mediaciones humanas para comunicar su gracia y realizar su salvación. María y José obedecen a las autoridades civiles legítimas y emprenden un viaje largo y fatigoso estando ella a punto de dar a luz. No protestan ni exigen privilegios divinos; caminan con paciencia y fe, confiando en que Dios guía sus pasos incluso a través de las incomodidades del camino. Nos enseña a descubrir la presencia y el propósito de Dios en las dificultades, las obligaciones diarias y en los acontecimientos que escapan a nuestro control.`,
-      peticion: "Te pedimos, Señor, la gracia de confiar en tu providencia amorosa y de reconocer tu guía en medio de los eventos diarios de nuestra vida y de la sociedad."
+Dios no actúa por encima de nuestra historia, sino dentro de ella: se vale de cosas sencillas, de personas y de situaciones ordinarias para hacernos llegar su amor. María y José cumplen lo que se les pide y emprenden un viaje largo y cansado, cuando ella está a punto de dar a luz. No reclaman privilegios. Caminan con paciencia, confiando en que Dios va con ellos aunque el camino sea incómodo.
+
+Su ejemplo nos invita a descubrir a Dios también en las dificultades, en las obligaciones de cada día y en lo que no podemos controlar.`,
+      peticion: "Señor, ayúdanos a confiar en tu cuidado amoroso y a reconocer tu mano en lo que vivimos cada día, en nuestra familia y en nuestra sociedad."
     },
     {
       dia: 6,
-      titulo: "No hay lugar en la posada",
+      titulo: "No había lugar en la posada",
       imagenVitral: "images/vitral/dia6.png",
       imagenOrtodoxo: "images/ortodoxo/dia6.png",
       lectura: {
-        referencia: "Lucas 2:6-7",
-        texto: `Y aconteció que estando ellos allí, se cumplieron los días de su alumbramiento. Y dio a luz a su hijo primogénito, y lo envolvió en pañales, y lo acostó en un pesebre, porque no había lugar para ellos en la posada.`
+        referencia: "Lucas 2,6-7",
+        fuente: FUENTE_BIBLICA,
+        esParafrasis: true,
+        texto: `Durante su estancia en Belén, se cumplió el tiempo del embarazo y María tuvo a su hijo primogénito; lo envolvió en pañales y lo acostó en un pesebre, porque no había lugar para ellos en la posada.`
       },
-      reflexion: `El Creador del universo entra en su propia creación y no encuentra un lugar digno donde recostar su cabeza. La frase "no había lugar para ellos en la posada" resuena como una advertencia a lo largo de los siglos. Nos muestra que el misterio de la Encarnación ocurre en la periferia, en la sencillez y el desapego, lejos del ruido y de las seguridades del mundo.
+      reflexion: `El que creó el universo llega al mundo y no encuentra un lugar digno donde nacer. La frase «no había lugar para ellos en la posada» (Lucas 2,7) sigue sonando hoy como una pregunta para cada uno de nosotros. Jesús nace en la sencillez, en las afueras, lejos del ruido y de las seguridades del mundo.
 
-Esta carencia de espacio físico nos interpela directamente sobre nuestra vida espiritual y comunitaria. En la teología católica, la fe se vive en la "comunión de los santos", en un cuerpo místico donde Cristo se identifica con el más pequeño y necesitado: "Lo que hicisteis con uno de estos mis hermanos más pequeños, conmigo lo hicisteis" (Mateo 25:40). Si cerramos las puertas al necesitado, al migrante o al enfermo, se las estamos cerrando al mismo Cristo. Que esta novena sea una oportunidad para examinar si nuestro corazón está lleno de ocupaciones, orgullo y bienes materiales, o si verdaderamente tenemos un lugar reservado para acoger a Jesús en su Palabra y en el prójimo.`,
-      peticion: "Te pedimos, Señor, que nos des un corazón hospitalario y caritativo, para que sepamos acogerte a Ti abriendo nuestras puertas a quienes sufren soledad o necesidad."
+Más tarde, Jesús mismo nos dirá que todo lo que hacemos por el más pequeño de nuestros hermanos, lo hacemos por Él (Mateo 25,40). Cristo sigue buscando posada en el pobre, en el migrante, en el enfermo y en quien está solo. Cuando les cerramos la puerta a ellos, se la cerramos a Él.
+
+Aprovechemos esta novena para revisar nuestro corazón: ¿está tan lleno de ocupaciones, de orgullo o de cosas que ya no queda espacio para Jesús? ¿O tenemos un lugar preparado para recibirlo en su Palabra y en los demás?`,
+      peticion: "Señor, danos un corazón acogedor y generoso, para recibirte a Ti abriendo nuestras puertas a quienes sufren soledad o necesidad."
     },
     {
       dia: 7,
-      titulo: "El Nacimiento de Jesús",
+      titulo: "El anuncio a los pastores",
       imagenVitral: "images/vitral/dia7.png",
       imagenOrtodoxo: "images/ortodoxo/dia7.png",
       lectura: {
-        referencia: "Lucas 2:8-14",
-        texto: `Había pastores en la misma región, que velaban y guardaban las vigilias de la noche sobre su rebaño. Y he aquí, se presentó ante ellos un ángel del Señor, y la gloria del Señor los rodeó de claridad; y tuvieron gran temor. Pero el ángel le dijo: No temáis; porque he aquí os doy nuevas de gran gozo, que será para todo el pueblo: que os ha nacido hoy, en la ciudad de David, un Salvador, que es CRISTO el Señor... Y repentinamente apareció con el ángel una multitud de las huestes celestiales, que alababan a Dios, y decían: ¡Gloria a Dios en las alturas, y en la tierra paz, buena voluntad para con los hombres!`
-      },
-      reflexion: `La gran noticia del nacimiento de Cristo no se revela primero a los sabios o a los reyes de la tierra, sino a pastores humildes que velaban de noche. Dios se complace en revelar los misterios del Reino a los sencillos. El coro celestial prorrumpe en un himno que la Iglesia canta con júbilo: "Gloria a Dios en las alturas, y en la tierra paz a los hombres de buena voluntad". 
+        referencia: "Lucas 2,8-14",
+        fuente: FUENTE_BIBLICA,
+        esParafrasis: true,
+        texto: `En la misma región había unos pastores que pasaban la noche en el campo, cuidando por turnos su rebaño. De pronto se les apareció un ángel del Señor, y la gloria del Señor brilló a su alrededor. Ellos sintieron mucho miedo, pero el ángel les dijo: «No tengan miedo. Les anuncio una noticia muy buena, que llenará de alegría a todo el pueblo: hoy les ha nacido en el pueblo de David un Salvador, que es el Mesías, el Señor. Esta será la señal para que lo reconozcan: encontrarán a un niño envuelto en pañales y acostado en un pesebre».
 
-Esta paz no es una simple tregua de conflictos armados ni una tranquilidad superficial; es el *Shalom* bíblico, la reconciliación total del ser humano con Dios, consigo mismo y con la creación, hecha posible gracias a la Encarnación. Dios nos ofrece su gracia y su paz como un don gratuito, pero que requiere una acogida activa: un corazón dispuesto y de "buena voluntad". La paz de Dios entra en el alma cuando cooperamos con su Espíritu y permitimos que su amor transforme nuestra conducta. Contemplemos hoy el pesebre y dejémonos inundar por esa alegría profunda que el mundo no puede dar ni puede quitar.`,
-      peticion: "Te pedimos, Señor, que derrames tu paz sobre todas las naciones en conflicto y restaures la concordia y el amor en cada uno de nuestros hogares."
+En ese momento apareció junto al ángel una gran multitud de ángeles del cielo, que alababan a Dios diciendo: «¡Gloria a Dios en el cielo, y en la tierra paz a los hombres que él ama!».`
+      },
+      reflexion: `La gran noticia del nacimiento de Jesús no llega primero a los sabios ni a los poderosos, sino a unos pastores humildes que cuidaban sus rebaños de noche. A Dios le gusta mostrarse a los sencillos.
+
+Los ángeles cantan gloria a Dios en el cielo y anuncian paz en la tierra para los hombres que Él ama (Lucas 2,14). Es el mismo canto con el que comienza el Gloria de la Misa. Las traducciones católicas lo dicen de distintas maneras: los hombres en quienes Dios se complace, o la hora de su gracia. Pero todas apuntan a lo mismo, porque el texto original habla de la bondad de Dios hacia nosotros: la paz que se anuncia no depende de que primero seamos buenos, sino de que Dios nos ama primero.
+
+Esa paz no es solo que se acaben las peleas o tener un rato de tranquilidad. Es el shalom de la Biblia: estar reconciliados con Dios, con nosotros mismos, con los demás y con toda la creación. Es un regalo gratuito, pero hay que recibirlo: abrir el corazón y dejar que el amor de Dios cambie nuestra manera de vivir. Contemplemos hoy el pesebre y dejemos que nos llene esa alegría profunda que nadie nos puede quitar.`,
+      peticion: "Señor, derrama tu paz sobre los pueblos que viven en guerra y devuelve la armonía y el amor a cada uno de nuestros hogares."
     },
     {
       dia: 8,
-      titulo: "La Adoración de los Pastores",
+      titulo: "Los pastores adoran al Niño",
       imagenVitral: "images/vitral/dia8.png",
       imagenOrtodoxo: "images/ortodoxo/dia8.png",
       lectura: {
-        referencia: "Lucas 2:15-20",
-        texto: `Sucedió que cuando los ángeles se fueron de ellos al cielo, los pastores se dijeron unos a otros: Pasemos, pues, hasta Belén, y veamos esto que ha sucedido, y que el Señor nos ha manifestado. Vinieron, pues, apresuradamente, y hallaron a María y a José, y al niño acostado en el pesebre. Y al verlo, dieron a conocer lo que se les había dicho acerca del niño... Pero María guardaba todas estas cosas, meditándolas en su corazón. Y volvieron los pastores glorificando y alabando a Dios por todas las cosas que habían oído y visto, como se les había dicho.`
-      },
-      reflexion: `Los pastores no dudan: van apresuradamente a Belén y encuentran exactamente lo que Dios les había revelado. Al ver al Niño, se convierten en los primeros evangelizadores, transmitiendo el mensaje celestial. 
+        referencia: "Lucas 2,15-20",
+        fuente: FUENTE_BIBLICA,
+        esParafrasis: true,
+        texto: `Cuando los ángeles regresaron al cielo, los pastores comentaron entre ellos: «Vamos a Belén a ver lo que ha pasado, eso que el Señor nos ha anunciado». Se apresuraron a ir, y allí estaban María y José, con el niño acostado en el pesebre. Cuando lo vieron, compartieron con todos el mensaje que habían recibido sobre el niño, y quienes los escuchaban quedaban asombrados.
 
-El pasaje destaca una actitud maravillosa de la Virgen María: "guardaba todas estas cosas, meditándolas en su corazón". Este versículo refleja la esencia de la Tradición en la Iglesia. La Tradición no son meras costumbres humanas repetitivas, sino la memoria viva de la Iglesia que conserva, medita y transmite de generación en generación los misterios de la salvación inspirados por el Espíritu Santo. María es la memoria fiel de la Iglesia primitiva. Al contemplar los hechos de la vida de su Hijo, nos enseña el valor de la vida contemplativa, de la lectura meditada de la Escritura y del discernimiento de la voluntad de Dios en los acontecimientos diarios, permitiendo que la Palabra eche raíces profundas en nuestra alma.`,
-      peticion: "Te pedimos, Señor, la gracia de saber hacer silencio interior para meditar en tu Palabra y saber descubrir tus maravillas en las cosas sencillas de cada día."
+Y María conservaba todo esto y lo meditaba en su corazón.
+
+Después, los pastores se fueron alabando a Dios y dándole gloria por todo lo que vieron y oyeron: todo había sucedido tal como se les anunció.`
+      },
+      reflexion: `Los pastores no se quedan con la duda: van de prisa a Belén y encuentran todo tal como se lo habían anunciado. Al ver al Niño, cuentan a todos lo que han oído. Son los primeros en anunciar la Buena Noticia.
+
+El Evangelio nos regala también un detalle precioso sobre la Virgen: María conservaba todo esto y lo meditaba en su corazón (Lucas 2,19). Ella no olvida lo que Dios ha hecho; lo guarda, lo piensa y lo comparte. Así vive la Tradición de la Iglesia: no como un conjunto de costumbres repetidas, sino como la memoria viva de la fe, que se medita y se transmite de generación en generación con la ayuda del Espíritu Santo.
+
+María nos enseña a hacer silencio, a leer la Palabra con calma y a descubrir lo que Dios nos quiere decir en lo que vivimos cada día, para que su Palabra eche raíces en nuestro corazón.`,
+      peticion: "Señor, enséñanos a hacer silencio para meditar tu Palabra y a descubrir tus maravillas en las cosas sencillas de cada día."
     },
     {
       dia: 9,
-      titulo: "El Verbo se hizo carne",
+      titulo: "La Palabra se hizo carne",
       imagenVitral: "images/vitral/dia9.png",
       imagenOrtodoxo: "images/ortodoxo/dia9.png",
       lectura: {
-        referencia: "Juan 1:1-14",
-        texto: `En el principio era el Verbo, y el Verbo era con Dios, y el Verbo era Dios. Este era en el principio con Dios. Todas las cosas por él fueron hechas, y sin él nada de lo que ha sido hecho, fue hecho... Y aquel Verbo fue hecho carne, y habitó entre nosotros (y vimos su gloria, gloria como del unigénito del Padre), lleno de gracia y de verdad.`
-      },
-      reflexion: `En este último día, el prólogo del Evangelio de Juan nos eleva al misterio eterno y teológico de la Navidad. El niño acostado en el pesebre no es simplemente un profeta insigne o un maestro moral; es el "Verbo hecho carne", la segunda persona de la Santísima Trinidad, el Dios creador eterno hecho hombre. 
+        referencia: "Juan 1,1-14",
+        fuente: FUENTE_BIBLICA,
+        esParafrasis: true,
+        texto: `En el principio ya existía la Palabra. La Palabra estaba junto a Dios, y la Palabra era Dios. Desde el principio estaba junto a Dios. Por medio de ella Dios hizo todas las cosas; nada de lo que existe fue hecho sin ella. En ella estaba la vida, y la vida era la luz de los seres humanos. Esta luz brilla en la oscuridad, y la oscuridad no ha podido apagarla.
 
-Este misterio nos revela el inmenso amor de Dios, quien no se limitó a hablarnos desde lejos o enviarnos mensajes, sino que se hizo uno de nosotros para divinizarnos. Como enseñaban los antiguos Padres de la Iglesia: "Dios se hizo hombre para que el hombre se hiciera hijo de Dios por participación" (2 Pedro 1:4). La salvación no es solo un perdón externo o legal, sino una transformación real que infunde en nosotros la vida misma de Dios. Al celebrar la Navidad, celebramos que nuestra naturaleza humana ha sido elevada y dignificada. Cristo habita entre nosotros y nos ofrece el poder de ser hechos hijos de Dios mediante la fe activa en su Nombre y la caridad que brota de su gracia.`,
-      peticion: "Te damos gracias, amado Salvador, por el regalo de tu Encarnación. Te pedimos que reines en nuestros corazones y que nos permitas vivir siempre como verdaderos hijos del Padre."
+Dios envió a un hombre llamado Juan. Vino como testigo, para hablar de la luz, para que todos creyeran gracias a él. Juan no era la luz, sino que vino a dar testimonio de la luz.
+
+La luz verdadera, la que ilumina a toda persona, venía a este mundo. La Palabra estaba en el mundo, y aunque el mundo fue hecho por medio de ella, el mundo no la reconoció. Vino a los suyos, y los suyos no la recibieron. Pero a todos los que la recibieron, a los que creen en su nombre, les dio el poder de llegar a ser hijos de Dios. Estos no nacieron por la sangre, ni por deseo humano, ni por voluntad de un hombre, sino que nacieron de Dios.
+
+Y la Palabra se hizo carne y puso su morada entre nosotros. Hemos visto su gloria, la gloria que recibe del Padre como Hijo único, lleno de gracia y de verdad.`
+      },
+      reflexion: `En este último día, el comienzo del Evangelio de Juan nos lleva al centro del misterio de la Navidad. El niño del pesebre no es solo un gran profeta o un buen maestro: es la Palabra eterna de Dios, el Hijo, que existía desde siempre junto al Padre y por quien todo fue hecho. Y esa Palabra se hizo carne y puso su morada entre nosotros (Juan 1,14). Así como Dios habitaba en la tienda del desierto, donde se guardaba el Arca de la Alianza, ahora habita entre nosotros en Jesús, a quien María llevó en su seno.
+
+Dios no se conformó con hablarnos desde lejos: se hizo uno de nosotros. San Atanasio, uno de los grandes Padres de la Iglesia, lo explicaba así: el Hijo de Dios se hizo hombre para que nosotros pudiéramos participar de la vida de Dios (Sobre la Encarnación, 54). Es lo que enseña también la Escritura cuando dice que estamos llamados a participar de la naturaleza divina (2 Pedro 1,4).
+
+La salvación, entonces, no es solo un perdón que viene de fuera: es una vida nueva que Dios pone dentro de nosotros. A todos los que reciben a Jesús y creen en Él, Dios les da la capacidad de ser sus hijos (Juan 1,12). Celebrar la Navidad es celebrar que nuestra humanidad ha sido levantada y llena de dignidad, y que podemos vivir como hijos de Dios, con una fe que se convierte en amor concreto.`,
+      peticion: "Gracias, Jesús, por hacerte uno de nosotros. Reina en nuestros corazones y ayúdanos a vivir siempre como verdaderos hijos del Padre."
     }
   ]
 };
